@@ -4,35 +4,53 @@
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/flake8:2": {
 			"version": "latest",
-			"plugins": "flake8-black"
-		}
-	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-python.flake8"
+			"plugins": "flake8-black",
+			"maxLineLength": 120,
+			"ignore": [
+				"E501",
+				"E203",
+				"W503"
 			],
-			"settings": {
-				"python.linting.flake8Enabled": true,
-				"python.linting.enabled": true,
-				"python.linting.flake8Path": "~/workspaces/python-course/.venv/bin/flake8"
-			},
-			"rules": {
-				"python.linting.flake8": {
-					"severity": "Warning",
-					"enabled": true,
-					"ignore": [
-						"E501",
-						"E203",
-						"W503"
-					],
-					"maxLineLength": 120
-				}
+			"enabled": true,
+			"flake8Path": "/usr/workspaces/python-course/.venv/bin/flake8"
+		},
+		"ghcr.io/itsmechlark/features/postgresql:1": {
+			"version": "latest",
+			"port": 5432,
+			"username": "postgres",
+			"password": "admin",
+			"database": "sap_db",
+			"extensions": {
+				"pg_stat_statements": true
 			}
 		}
 	},
+},
+"customizations": {
+	"vscode": {
+		"extensions": [
+			"ms-python.flake8"
+		],
+		"settings": {
+			"python.linting.flake8Enabled": true,
+			"python.linting.enabled": true,
+			"python.linting.flake8Path": "~/workspaces/python-course/.venv/bin/flake8"
+		},
+		"rules": {
+			"python.linting.flake8": {
+				"severity": "Warning",
+				"enabled": true,
+				"ignore": [
+					"E501",
+					"E203",
+					"W503"
+				],
+				"maxLineLength": 120
+			}
+		}
+	}
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "pip3 install --user -r requirements.txt"
-}
+},
